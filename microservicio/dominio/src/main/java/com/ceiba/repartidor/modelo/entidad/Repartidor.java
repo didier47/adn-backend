@@ -1,8 +1,11 @@
 package com.ceiba.repartidor.modelo.entidad;
 
 
+import lombok.Getter;
+
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 
+@Getter
 public class Repartidor {
 
     private static final String SE_DEBE_INGRESAR_LA_IDENTIFICACION = "Se debe ingresar la identificacion del repartidor";
@@ -29,23 +32,4 @@ public class Repartidor {
         this.telefono = telefono;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
 }

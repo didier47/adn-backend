@@ -1,11 +1,14 @@
 package com.ceiba.venta.modelo.entidad;
 
 
+import lombok.Getter;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
+@Getter
 public class Venta {
 
     private static final String SE_DEBE_INGRESAR_EL_REPARTIDOR = "Se debe ingresar el repartidor";
@@ -75,27 +78,4 @@ public class Venta {
         return this.fechaEntrega.getDayOfWeek().equals(DayOfWeek.SATURDAY) || this.fechaEntrega.getDayOfWeek().equals(DayOfWeek.SUNDAY);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public Long getIdRepartidor() {
-        return idRepartidor;
-    }
-
-    public String getReferencia() {
-        return referencia;
-    }
-
-    public Long getDistancia() {
-        return distancia;
-    }
-
-    public LocalDate getFechaEntrega() {
-        return fechaEntrega;
-    }
-
-    public Double getValorEnvio() {
-        return valorEnvio;
-    }
 }
