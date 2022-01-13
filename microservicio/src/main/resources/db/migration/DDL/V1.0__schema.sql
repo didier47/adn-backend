@@ -8,10 +8,11 @@ create table item
 );
 create table repartidor
 (
-    id        int(11)      not null auto_increment,
-    nombres   varchar(100) not null,
-    apellidos varchar(100) not null,
-    telefono  varchar(45)  not null,
+    id             int(11)      not null auto_increment,
+    identificacion varchar(45)  not null,
+    nombres        varchar(100) not null,
+    apellidos      varchar(100) not null,
+    telefono       varchar(45)  not null,
     primary key (id)
 );
 create table venta
