@@ -4,6 +4,7 @@ import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
@@ -60,6 +61,18 @@ public class ValidadorArgumento {
 
     public static void validarMenor(LocalDateTime fechaInicial, LocalDateTime fechaFinal, String mensaje) {
         if (fechaInicial.toLocalDate().isAfter(fechaFinal.toLocalDate())) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarMenor(LocalDate fechaInicial, LocalDate fechaFinal, String mensaje) {
+        if (fechaInicial.isAfter(fechaFinal)) {
+            throw new ExcepcionValorInvalido(mensaje);
+        }
+    }
+
+    public static void validarIgual(LocalDate fechaInicial, LocalDate fechaFinal, String mensaje) {
+        if (fechaInicial.isEqual(fechaFinal)) {
             throw new ExcepcionValorInvalido(mensaje);
         }
     }

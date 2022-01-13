@@ -35,7 +35,7 @@ public interface RepositorioRepartidor {
     boolean existe(String referencia);
 
     /**
-     * Permite validar si existe un repartidor con una referencia excluyendo un id
+     * Permite validar si existe un repartidor con una identificacion excluyendo un id
      *
      * @return si existe o no
      */
