@@ -1,9 +1,12 @@
 package com.ceiba.item.modelo.entidad;
 
 
+import lombok.Getter;
+
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
 import static com.ceiba.dominio.ValidadorArgumento.validarPositivo;
 
+@Getter
 public class Item {
 
     private static final String SE_DEBE_INGRESAR_LA_REFERENCIA = "Se debe ingresar la referencia del item";
@@ -29,19 +32,4 @@ public class Item {
         this.cantidad = cantidad;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getReferencia() {
-        return referencia;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public Long getCantidad() {
-        return cantidad;
-    }
 }
