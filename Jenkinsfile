@@ -3,12 +3,13 @@ pipeline{
 	// any -> tomaria slave 5 u 8
 	// Para mobile se debe especificar el slave -> {label 'Slave_Mac'}
 	// Para proyectos de arus se debe tomar el slave 6 o 7 -> {label 'Slave6'} o {label 'Slave7'}
-    agent any
+    agent {
+        label 'Slave_Induccion'
+    }
 
     options {
-        buildDiscarder(logRotator(numToKeepStr: '5'))
+        buildDiscarder(logRotator(numToKeepStr: '3'))
         disableConcurrentBuilds()
-        gitLabConnection('GitCeiba')
     }
 
     environment {
@@ -38,22 +39,18 @@ pipeline{
             steps {
                 echo '------------>Checkout desde Git Microservicio<------------'
                 //Esta opción se usa para el checkout sencillo de un microservicio
-                gitCheckout(
-                    urlProject:'http://github.com/didier47/adn-backend.git',
-                    branchProject: 'main',
-                )
-
-                //Esta opción se usa cuando el comun está centralizado para varios microservicios
-                /*gitCheckoutWithComun(
-                    urlProject:'git@git.ceiba.com.co:ceiba_legos/revision-blocks.git',
-                    branchProject: '${BRANCH_NAME}',
-                    urlComun: 'git@git.ceiba.com.co:ceiba_legos/comun.git'
-                )*/
-
-                dir("${PROJECT_PATH_BACK}"){
-                    sh 'chmod +x ./gradlew'
-                    sh './gradlew clean'
-                }
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: [],
+                    gitTool: 'Default',
+                    submoduleCfg: [],
+                    userRemoteConfigs: [[
+                    credentialsId: 'GitHub_didier47',
+                    url:'https://github.com/didier47/adn-backend.git'
+                    ]]
+                ])
             }
         }
 
