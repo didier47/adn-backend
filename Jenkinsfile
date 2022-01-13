@@ -39,8 +39,8 @@ pipeline{
                 echo '------------>Checkout desde Git Microservicio<------------'
                 //Esta opción se usa para el checkout sencillo de un microservicio
                 gitCheckout(
-                    urlProject:'git@github.com:didier47/adn-backend.git',
-                    branchProject: '${BRANCH_NAME}', 
+                    urlProject:'http://github.com/didier47/adn-backend.git',
+                    branchProject: 'main',
                 )
 
                 //Esta opción se usa cuando el comun está centralizado para varios microservicios
