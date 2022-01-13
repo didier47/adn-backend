@@ -63,11 +63,6 @@ pipeline{
                         sh 'chmod +x microservicio/gradlew'
                         sh './microservicio/gradlew --b ./microservicio/build.gradle test'
                     }
-                    post{
-                        always {
-                            junit '**/build/test-results/test/*.xml' //Configuración de los reportes de JUnit
-                        }
-                    }
                 }
                 /*
                 stage('Test- Frontend'){
