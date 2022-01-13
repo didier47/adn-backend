@@ -88,12 +88,11 @@ pipeline{
 
         stage('Build'){
             parallel {
-                stage('construcción Backend'){
+                stage('Construcción Backend'){
                     steps{
                         echo "------------>Compilación backend<------------"
-                        dir("${PROJECT_PATH_BACK}"){
-                            sh './microservicio/gradlew build -x test'
-                        }
+                        sh './microservicio/gradlew --b ./microservicio/build.gradle clean'
+                        sh './microservicio/gradlew --b ./microservicio/build.gradle build'
                     }
                 }
             }
