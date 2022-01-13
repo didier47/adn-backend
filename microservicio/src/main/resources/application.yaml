@@ -14,8 +14,8 @@ spring:
    datasource:
       driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:mysql://localhost:3306/adn?autoReconnect=true&useSSL
+      jdbcUrl: jdbc:mysql://localhost:3306/adn?autoReconnect=true
       username: adn-usuario
-      password: 
+      password: root
       hikari:
          poolName: pool

@@ -6,12 +6,12 @@ import org.springframework.util.ReflectionUtils;
 import org.springframework.util.ReflectionUtils.FieldCallback;
 
 /**
- * Procesador para la anotaciones 
+ * Procesador para la anotaciones
  */
 @Component
 public class DataAccessAnnotationProcessor implements BeanPostProcessor {
- 
-	/**
+
+    /**
      * Process Before
      */
     @Override
@@ -19,7 +19,7 @@ public class DataAccessAnnotationProcessor implements BeanPostProcessor {
         this.configureFieldInjection(bean);
         return bean;
     }
- 
+
     /**
      * Process After
      */
@@ -27,12 +27,12 @@ public class DataAccessAnnotationProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, String beanName) {
         return bean;
     }
- 
+
     /**
      * @param bean
      */
     private void configureFieldInjection(Object bean) {
-    	Class<?> managedBeanClass = bean.getClass();
+        Class<?> managedBeanClass = bean.getClass();
         FieldCallback fieldCallback = new DataAccessFieldCallback(bean);
         ReflectionUtils.doWithFields(managedBeanClass, fieldCallback);
     }
