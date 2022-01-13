@@ -61,7 +61,7 @@ pipeline{
                     steps {
                         echo '------------>Test Backend<------------'
                         dir("${PROJECT_PATH_BACK}"){
-                            sh './gradlew --stacktrace test'
+                            sh './microservicio/gradlew --stacktrace test'
                         }
                     }
                     post{
@@ -97,7 +97,7 @@ pipeline{
                     steps{
                         echo "------------>Compilación backend<------------"
                         dir("${PROJECT_PATH_BACK}"){
-                            sh './gradlew build -x test'
+                            sh './microservicio/gradlew build -x test'
                         }
                     }
                 }
