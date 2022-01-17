@@ -1,6 +1,7 @@
 package com.ceiba.venta.modelo.entidad;
 
 
+import com.ceiba.repartidor.modelo.entidad.Repartidor;
 import lombok.Getter;
 
 import java.time.DayOfWeek;
@@ -30,14 +31,13 @@ public class Venta {
     private static final double VALOR_ADICIONAL_ENVIO_DIA_NO_HABIL = 10000;
 
     private Long id;
-    private Long idRepartidor;
+    private Repartidor repartidor;
     private String referencia;
     private Long distancia;
     private LocalDate fechaEntrega;
     private Double valorEnvio;
 
-    public Venta(Long id, Long idRepartidor, String referencia, Long distancia, LocalDate fechaEntrega, Double valorEnvio) {
-        validarObligatorio(idRepartidor, SE_DEBE_INGRESAR_EL_REPARTIDOR);
+    public Venta(Long id, Repartidor repartidor, String referencia, Long distancia, LocalDate fechaEntrega, Double valorEnvio) {
         validarObligatorio(referencia, SE_DEBE_INGRESAR_LA_REFERENCIA);
         validarObligatorio(distancia, SE_DEBE_INGRESAR_LA_DISTANCIA);
         validarPositivo(distancia, LA_DISTANCIA_DEBE_SER_POSITIVA);
@@ -46,7 +46,7 @@ public class Venta {
         validarIgual(LocalDate.now(), fechaEntrega, LA_FECHA_DE_ENTREGA_DEBE_SER_DESPUES_DE_HOY);
 
         this.id = id;
-        this.idRepartidor = idRepartidor;
+        this.repartidor = repartidor;
         this.referencia = referencia;
         this.distancia = distancia;
         this.fechaEntrega = fechaEntrega;

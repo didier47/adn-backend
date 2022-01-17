@@ -12,4 +12,11 @@ public interface DaoRepartidor {
      */
     List<DtoRepartidor> listar();
 
+    /**
+     * Permite buscar un repartidor dado un id
+     *
+     * @return el repartidor
+     */
+    DtoRepartidor buscarPorId(Long id);
+
 }

@@ -1,6 +1,7 @@
 package com.ceiba.repartidor.modelo.entidad;
 
 
+import com.ceiba.repartidor.modelo.dto.DtoRepartidor;
 import lombok.Getter;
 
 import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
@@ -30,6 +31,14 @@ public class Repartidor {
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.telefono = telefono;
+    }
+
+    public Repartidor(DtoRepartidor dtoRepartidor) {
+        this.id = dtoRepartidor.getId();
+        this.identificacion = dtoRepartidor.getIdentificacion();
+        this.nombres = dtoRepartidor.getNombres();
+        this.apellidos = dtoRepartidor.getApellidos();
+        this.telefono = dtoRepartidor.getTelefono();
     }
 
 }

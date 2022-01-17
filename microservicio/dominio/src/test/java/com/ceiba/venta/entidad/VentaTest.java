@@ -3,6 +3,8 @@ package com.ceiba.venta.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.repartidor.modelo.entidad.Repartidor;
+import com.ceiba.repartidor.servicio.testdatabuilder.RepartidorTestDataBuilder;
 import com.ceiba.venta.modelo.entidad.Venta;
 import com.ceiba.venta.servicio.testdatabuilder.VentaTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
@@ -31,14 +33,15 @@ class VentaTest {
     void deberiaCrearCorrectamenteLaVenta() {
         // arrange
         Long idRepartidor = 2L;
+        Repartidor repartidor = new RepartidorTestDataBuilder().conId(idRepartidor).build();
         Long distancia = 5L;
         LocalDate fechaEntrega = LocalDate.now().plusDays(1);
         Double valorEnvio = 10000.0;
         //act
-        Venta venta = new VentaTestDataBuilder().conIdRepartidor(idRepartidor).conDistancia(distancia).conFechaEntrega(fechaEntrega).conValorEnvio(valorEnvio).conId(1L).build();
+        Venta venta = new VentaTestDataBuilder().conRepartidor(repartidor).conDistancia(distancia).conFechaEntrega(fechaEntrega).conValorEnvio(valorEnvio).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(idRepartidor, venta.getIdRepartidor());
+        assertEquals(idRepartidor, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -56,7 +59,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -74,7 +77,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -92,7 +95,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -110,7 +113,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -128,7 +131,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -146,7 +149,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -164,7 +167,7 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -182,23 +185,11 @@ class VentaTest {
         Venta venta = new VentaTestDataBuilder().conDistancia(distancia).conFechaEntrega(fechaEntrega).conId(1L).build();
         //assert
         assertEquals(1, venta.getId());
-        assertEquals(2, venta.getIdRepartidor());
+        assertEquals(2, venta.getRepartidor().getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
         assertEquals(valorEnvio, venta.getValorEnvio());
-    }
-
-    @Test
-    void deberiaFallarSinIdRepartidor() {
-
-        //Arrange
-        VentaTestDataBuilder ventaTestDataBuilder = new VentaTestDataBuilder().conIdRepartidor(null).conId(1L);
-        //act-assert
-        BasePrueba.assertThrows(() -> {
-                    ventaTestDataBuilder.build();
-                },
-                ExcepcionValorObligatorio.class, "Se debe ingresar el repartidor");
     }
 
     @Test
