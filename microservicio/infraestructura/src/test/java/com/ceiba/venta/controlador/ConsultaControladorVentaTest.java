@@ -1,6 +1,7 @@
 package com.ceiba.venta.controlador;
 
 import com.ceiba.ApplicationMock;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -27,6 +28,9 @@ class ConsultaControladorVentaTest {
     @Autowired
     private MockMvc mocMvc;
 
+    @Autowired
+    ObjectMapper objectMapper;
+
     @Test
     @DisplayName("Deberia listar ventas")
     void deberiaListarVentas() throws Exception {
@@ -36,7 +40,11 @@ class ConsultaControladorVentaTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].idRepartidor", is(2)))
+                .andExpect(jsonPath("$[0].repartidor.id", is(2)))
+                .andExpect(jsonPath("$[0].repartidor.identificacion", is("identificacionrepartidordos")))
+                .andExpect(jsonPath("$[0].repartidor.nombres", is("nombresrepartidordos")))
+                .andExpect(jsonPath("$[0].repartidor.apellidos", is("apellidosrepartidordos")))
+                .andExpect(jsonPath("$[0].repartidor.telefono", is("1234567891")))
                 .andExpect(jsonPath("$[0].referencia", is("referenciaventa")))
                 .andExpect(jsonPath("$[0].distancia", is(50)))
                 .andExpect(jsonPath("$[0].fechaEntrega", is("2022-01-13")))
