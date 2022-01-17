@@ -17,10 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class VentaTest {
 
-    static final long DISTANCIA_LIMITE_PARA_ENVIO_PRIMER_NIVEL = 10L;
-    static final long DISTANCIA_LIMITE_PARA_ENVIO_SEGUNDO_NIVEL = 30L;
-    static final long DISTANCIA_LIMITE_PARA_ENVIO_TERCER_NIVEL = 70L;
-
     static final double VALOR_PARA_ENVIO_PRIMER_NIVEL = 10000;
     static final double VALOR_PARA_ENVIO_SEGUNDO_NIVEL = 20000;
     static final double VALOR_PARA_ENVIO_TERCER_NIVEL = 40000;
