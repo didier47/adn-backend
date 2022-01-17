@@ -2,7 +2,9 @@ package com.ceiba.repartidor.entidad;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.repartidor.modelo.dto.DtoRepartidor;
 import com.ceiba.repartidor.modelo.entidad.Repartidor;
+import com.ceiba.repartidor.servicio.testdatabuilder.DtoRepartidorTestDataBuilder;
 import com.ceiba.repartidor.servicio.testdatabuilder.RepartidorTestDataBuilder;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,6 +23,21 @@ class RepartidorTest {
         //assert
         assertEquals(1, repartidor.getId());
         assertEquals("12345678", identificacion);
+        assertEquals("nombresrepartidor", repartidor.getNombres());
+        assertEquals("apellidosrepartidor", repartidor.getApellidos());
+        assertEquals("telefonorepartidor", repartidor.getTelefono());
+    }
+
+    @Test
+    @DisplayName("Deberia crear correctamente el repartidor con dto repartidor")
+    void deberiaCrearCorrectamenteElRepartidorConDtoRepartidor() {
+        // arrange
+        DtoRepartidor dtoRepartidor = new DtoRepartidorTestDataBuilder().build();
+        //act
+        Repartidor repartidor = new Repartidor(dtoRepartidor);
+        //assert
+        assertEquals(2, repartidor.getId());
+        assertEquals("identificacionrepartidor", repartidor.getIdentificacion());
         assertEquals("nombresrepartidor", repartidor.getNombres());
         assertEquals("apellidosrepartidor", repartidor.getApellidos());
         assertEquals("telefonorepartidor", repartidor.getTelefono());
