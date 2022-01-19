@@ -13,22 +13,22 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "repartidor", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearRepartidor;
 
     @SqlStatement(namespace = "repartidor", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarRepartidor;
 
     @SqlStatement(namespace = "repartidor", value = "eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarRepartidor;
 
     @SqlStatement(namespace = "repartidor", value = "existe")
-    private static String sqlExiste;
+    private static String sqlExisteRepartidor;
 
     @SqlStatement(namespace = "repartidor", value = "existePorId")
-    private static String sqlExistePorId;
+    private static String sqlExisteRepartidorPorId;
 
     @SqlStatement(namespace = "venta", value = "existeEnVenta")
-    private static String sqlExisteEnVenta;
+    private static String sqlExisteRepartidorEnVenta;
 
     public RepositorioRepartidorMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -36,7 +36,7 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
 
     @Override
     public Long crear(Repartidor repartidor) {
-        return this.customNamedParameterJdbcTemplate.crear(repartidor, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(repartidor, sqlCrearRepartidor);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarRepartidor, paramSource);
     }
 
     @Override
@@ -54,13 +54,13 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExiste, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteRepartidor, paramSource, Boolean.class)
         );
     }
 
     @Override
     public void actualizar(Repartidor repartidor) {
-        this.customNamedParameterJdbcTemplate.actualizar(repartidor, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(repartidor, sqlActualizarRepartidor);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExistePorId, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteRepartidorPorId, paramSource, Boolean.class)
         );
     }
 
@@ -81,7 +81,7 @@ public class RepositorioRepartidorMysql implements RepositorioRepartidor {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExisteEnVenta, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteRepartidorEnVenta, paramSource, Boolean.class)
         );
     }
 }

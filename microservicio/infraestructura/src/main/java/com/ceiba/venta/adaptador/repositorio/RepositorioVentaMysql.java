@@ -30,19 +30,19 @@ public class RepositorioVentaMysql implements RepositorioVenta {
     private static final String CAMPO_CANTIDAD = "cantidad";
 
     @SqlStatement(namespace = "venta", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearVenta;
 
     @SqlStatement(namespace = "venta", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarVenta;
 
     @SqlStatement(namespace = "venta", value = "eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarVenta;
 
     @SqlStatement(namespace = "venta", value = "existe")
-    private static String sqlExiste;
+    private static String sqlExisteVenta;
 
     @SqlStatement(namespace = "venta", value = "existePorId")
-    private static String sqlExistePorId;
+    private static String sqlExisteVentaPorId;
 
     @SqlStatement(namespace = "ventaItems", value = "crear")
     private static String sqlCrearVentaItem;
@@ -64,7 +64,7 @@ public class RepositorioVentaMysql implements RepositorioVenta {
         paramSource.addValue(CAMPO_VALOR_ENVIO, venta.getValorEnvio());
 
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlCrear, paramSource, keyHolder, new String[]{"id"});
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlCrearVenta, paramSource, keyHolder, new String[]{"id"});
         Long idVenta = Objects.requireNonNull(keyHolder.getKey()).longValue();
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().batchUpdate(
@@ -82,7 +82,7 @@ public class RepositorioVentaMysql implements RepositorioVenta {
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarVentaItem, paramSource);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarVenta, paramSource);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class RepositorioVentaMysql implements RepositorioVenta {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExiste, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteVenta, paramSource, Boolean.class)
         );
     }
 
@@ -107,7 +107,7 @@ public class RepositorioVentaMysql implements RepositorioVenta {
         paramSource.addValue(CAMPO_FECHA_ENTREGA, venta.getFechaEntrega());
         paramSource.addValue(CAMPO_VALOR_ENVIO, venta.getValorEnvio());
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlActualizarVenta, paramSource);
 
         this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarVentaItem, paramSource);
 
@@ -121,7 +121,7 @@ public class RepositorioVentaMysql implements RepositorioVenta {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExistePorId, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteVentaPorId, paramSource, Boolean.class)
         );
     }
 

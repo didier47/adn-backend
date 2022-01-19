@@ -7,6 +7,7 @@ import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
@@ -50,7 +51,7 @@ public class Venta {
 
         this.id = id;
         this.repartidor = repartidor;
-        this.items = items;
+        this.items = Collections.unmodifiableList(items);
         this.referencia = referencia;
         this.distancia = distancia;
         this.fechaEntrega = fechaEntrega;

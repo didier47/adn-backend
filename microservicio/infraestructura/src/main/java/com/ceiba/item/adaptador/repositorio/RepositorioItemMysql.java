@@ -16,22 +16,22 @@ public class RepositorioItemMysql implements RepositorioItem {
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;
 
     @SqlStatement(namespace = "item", value = "crear")
-    private static String sqlCrear;
+    private static String sqlCrearItem;
 
     @SqlStatement(namespace = "item", value = "actualizar")
-    private static String sqlActualizar;
+    private static String sqlActualizarItem;
 
     @SqlStatement(namespace = "item", value = "eliminar")
-    private static String sqlEliminar;
+    private static String sqlEliminarItem;
 
     @SqlStatement(namespace = "item", value = "existe")
-    private static String sqlExiste;
+    private static String sqlExisteItem;
 
     @SqlStatement(namespace = "item", value = "existePorId")
-    private static String sqlExistePorId;
+    private static String sqlExisteItemPorId;
 
     @SqlStatement(namespace = "ventaItems", value = "existeEnVenta")
-    private static String sqlExisteEnVenta;
+    private static String sqlExisteItemEnVenta;
 
     public RepositorioItemMysql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -39,7 +39,7 @@ public class RepositorioItemMysql implements RepositorioItem {
 
     @Override
     public Long crear(Item item) {
-        return this.customNamedParameterJdbcTemplate.crear(item, sqlCrear);
+        return this.customNamedParameterJdbcTemplate.crear(item, sqlCrearItem);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RepositorioItemMysql implements RepositorioItem {
         MapSqlParameterSource paramSource = new MapSqlParameterSource();
         paramSource.addValue("id", id);
 
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminar, paramSource);
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().update(sqlEliminarItem, paramSource);
     }
 
     @Override
@@ -57,13 +57,13 @@ public class RepositorioItemMysql implements RepositorioItem {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExiste, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteItem, paramSource, Boolean.class)
         );
     }
 
     @Override
     public void actualizar(Item item) {
-        this.customNamedParameterJdbcTemplate.actualizar(item, sqlActualizar);
+        this.customNamedParameterJdbcTemplate.actualizar(item, sqlActualizarItem);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class RepositorioItemMysql implements RepositorioItem {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExistePorId, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteItemPorId, paramSource, Boolean.class)
         );
     }
 
@@ -84,7 +84,7 @@ public class RepositorioItemMysql implements RepositorioItem {
 
         return Boolean.TRUE.equals(
                 this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
-                        .queryForObject(sqlExisteEnVenta, paramSource, Boolean.class)
+                        .queryForObject(sqlExisteItemEnVenta, paramSource, Boolean.class)
         );
     }
 
@@ -100,7 +100,7 @@ public class RepositorioItemMysql implements RepositorioItem {
             paramSource.addValue("cantidad", item.getCantidad());
             itemsAActualizar.add(paramSource);
         }
-        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().batchUpdate(sqlActualizar, itemsAActualizar.toArray(new MapSqlParameterSource[0]));
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().batchUpdate(sqlActualizarItem, itemsAActualizar.toArray(new MapSqlParameterSource[0]));
     }
 
 }
