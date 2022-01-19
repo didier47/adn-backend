@@ -20,7 +20,7 @@ class ServicioCrearItemTest {
         // arrange
         ItemTestDataBuilder itemTestDataBuilder = new ItemTestDataBuilder().conCantidad(-1L);
         // act - assert
-        BasePrueba.assertThrows(itemTestDataBuilder::build, ExcepcionValorInvalido.class, "La cantidad debe ser positiva");
+        BasePrueba.assertThrows(itemTestDataBuilder::build, ExcepcionValorInvalido.class, "El inventario del item debe ser positivo o igual a cero");
     }
 
     @Test

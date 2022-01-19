@@ -15,4 +15,5 @@ select venta.id         as id,
 from venta
          join repartidor on venta.idRepartidor = repartidor.id
          join ventaItems on venta.id = ventaItems.idVenta
-         join item on item.id = ventaItems.idItem;
+         join item on item.id = ventaItems.idItem
+where venta.id = :id;

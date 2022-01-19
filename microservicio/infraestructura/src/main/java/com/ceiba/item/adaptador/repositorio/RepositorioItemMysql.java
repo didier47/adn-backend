@@ -7,6 +7,9 @@ import com.ceiba.item.puerto.repositorio.RepositorioItem;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Repository
 public class RepositorioItemMysql implements RepositorioItem {
 
@@ -84,4 +87,20 @@ public class RepositorioItemMysql implements RepositorioItem {
                         .queryForObject(sqlExisteEnVenta, paramSource, Boolean.class)
         );
     }
+
+    @Override
+    public void actualizarBatch(List<Item> items) {
+        List<MapSqlParameterSource> itemsAActualizar = new ArrayList<>();
+        MapSqlParameterSource paramSource;
+        for (Item item : items) {
+            paramSource = new MapSqlParameterSource();
+            paramSource.addValue("id", item.getId());
+            paramSource.addValue("referencia", item.getReferencia());
+            paramSource.addValue("nombre", item.getNombre());
+            paramSource.addValue("cantidad", item.getCantidad());
+            itemsAActualizar.add(paramSource);
+        }
+        this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().batchUpdate(sqlActualizar, itemsAActualizar.toArray(new MapSqlParameterSource[0]));
+    }
+
 }

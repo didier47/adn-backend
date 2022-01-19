@@ -59,7 +59,7 @@ class ItemTest {
         BasePrueba.assertThrows(() -> {
                     itemTestDataBuilder.build();
                 },
-                ExcepcionValorInvalido.class, "La cantidad debe ser positiva");
+                ExcepcionValorInvalido.class, "El inventario del item debe ser positivo o igual a cero");
     }
 
     @Test

@@ -12,4 +12,11 @@ public interface DaoItem {
      */
     List<DtoItem> listar();
 
+    /**
+     * Permite listar items dada una cantidad de ids
+     *
+     * @return los items
+     */
+    List<DtoItem> listarPorIds(List<Long> ids);
+
 }

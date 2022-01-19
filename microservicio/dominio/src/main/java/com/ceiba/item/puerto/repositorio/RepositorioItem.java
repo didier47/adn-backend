@@ -2,6 +2,8 @@ package com.ceiba.item.puerto.repositorio;
 
 import com.ceiba.item.modelo.entidad.Item;
 
+import java.util.List;
+
 public interface RepositorioItem {
 
     /**
@@ -47,5 +49,12 @@ public interface RepositorioItem {
      * @return si existe o no
      */
     boolean existeEnVenta(Long id);
+
+    /**
+     * Permite actualizar una cantidad de items
+     *
+     * @param items
+     */
+    void actualizarBatch(List<Item> items);
 
 }

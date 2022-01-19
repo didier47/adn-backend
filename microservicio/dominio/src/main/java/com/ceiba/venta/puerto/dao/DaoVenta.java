@@ -12,4 +12,11 @@ public interface DaoVenta {
      */
     List<DtoVenta> listar();
 
+    /**
+     * Permite obtener una venta dado un id
+     *
+     * @return la venta
+     */
+    DtoVenta obtenerPorId(Long id);
+
 }

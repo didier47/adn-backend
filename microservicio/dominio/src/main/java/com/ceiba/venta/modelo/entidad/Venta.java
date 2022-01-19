@@ -1,11 +1,13 @@
 package com.ceiba.venta.modelo.entidad;
 
 
+import com.ceiba.item.modelo.entidad.Item;
 import com.ceiba.repartidor.modelo.entidad.Repartidor;
 import lombok.Getter;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
@@ -32,12 +34,13 @@ public class Venta {
 
     private Long id;
     private Repartidor repartidor;
+    private List<Item> items;
     private String referencia;
     private Long distancia;
     private LocalDate fechaEntrega;
     private Double valorEnvio;
 
-    public Venta(Long id, Repartidor repartidor, String referencia, Long distancia, LocalDate fechaEntrega, Double valorEnvio) {
+    public Venta(Long id, Repartidor repartidor, List<Item> items, String referencia, Long distancia, LocalDate fechaEntrega, Double valorEnvio) {
         validarObligatorio(referencia, SE_DEBE_INGRESAR_LA_REFERENCIA);
         validarObligatorio(distancia, SE_DEBE_INGRESAR_LA_DISTANCIA);
         validarPositivo(distancia, LA_DISTANCIA_DEBE_SER_POSITIVA);
@@ -47,6 +50,7 @@ public class Venta {
 
         this.id = id;
         this.repartidor = repartidor;
+        this.items = items;
         this.referencia = referencia;
         this.distancia = distancia;
         this.fechaEntrega = fechaEntrega;
