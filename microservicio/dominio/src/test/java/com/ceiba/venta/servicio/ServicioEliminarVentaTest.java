@@ -22,8 +22,8 @@ class ServicioEliminarVentaTest {
     void deberiaEliminarLaVentaLlamandoAlRepositorio() {
         // arrange
         List<Long> ids = Collections.singletonList(1L);
-        DtoVenta dtoVenta = new DtoVentaTestDataBuilder().build();
-        List<DtoItem> dtoItemsExistentes = Collections.singletonList(new DtoItemTestDataBuilder().build());
+        DtoVenta dtoVenta = new DtoVentaTestDataBuilder().conId(1L).build();
+        List<DtoItem> dtoItemsExistentes = Collections.singletonList(new DtoItemTestDataBuilder().conId(1L).build());
         RepositorioVenta repositorioVenta = Mockito.mock(RepositorioVenta.class);
         RepositorioItem repositorioItem = Mockito.mock(RepositorioItem.class);
         DaoVenta daoVenta = Mockito.mock(DaoVenta.class);
