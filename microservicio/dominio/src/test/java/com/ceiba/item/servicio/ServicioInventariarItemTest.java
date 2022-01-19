@@ -8,6 +8,7 @@ import com.ceiba.item.modelo.entidad.Item;
 import com.ceiba.item.puerto.dao.DaoItem;
 import com.ceiba.item.puerto.repositorio.RepositorioItem;
 import com.ceiba.item.servicio.testdatabuilder.DtoIdCantidadItemTestDataBuilder;
+import com.ceiba.item.servicio.testdatabuilder.DtoItemTestDataBuilder;
 import com.ceiba.item.servicio.testdatabuilder.ItemTestDataBuilder;
 import com.ceiba.venta.modelo.dto.DtoVenta;
 import com.ceiba.venta.puerto.dao.DaoVenta;
@@ -44,7 +45,7 @@ class ServicioInventariarItemTest {
         // arrange
         List<DtoIdCantidadItem> idCantidadItemList = Collections.singletonList(new DtoIdCantidadItemTestDataBuilder().conId(1L).build());
         Long idVenta = 1L;
-        List<Item> items = Collections.singletonList(new ItemTestDataBuilder().conId(1L).build());
+        List<DtoItem> dtoItemList = Collections.singletonList(new DtoItemTestDataBuilder().conId(1L).build());
         List<Long> ids = Collections.singletonList(1L);
 
         DaoItem daoItem = Mockito.mock(DaoItem.class);
@@ -54,7 +55,7 @@ class ServicioInventariarItemTest {
         Mockito.when(repositorioItem.existePorId(Mockito.anyLong())).thenReturn(true);
         Mockito.when(repositorioVenta.existePorId(Mockito.anyLong())).thenReturn(true);
         Mockito.when(daoVenta.obtenerPorId(Mockito.anyLong())).thenReturn(Mockito.any(DtoVenta.class));
-        Mockito.when(daoItem.listarPorIds(ids)).thenReturn(Mockito.anyList());
+        Mockito.when(daoItem.listarPorIds(ids)).thenReturn(dtoItemList);
         ServicioInventariarItems servicioInventariarItems = new ServicioInventariarItems(daoItem, repositorioItem, repositorioVenta, daoVenta);
         // act
         servicioInventariarItems.ejecutar(idCantidadItemList, idVenta);
@@ -68,7 +69,7 @@ class ServicioInventariarItemTest {
         // arrange
         List<DtoIdCantidadItem> idCantidadItemList = Collections.singletonList(new DtoIdCantidadItemTestDataBuilder().conId(1L).build());
         Long idVenta = null;
-        List<Item> items = Collections.singletonList(new ItemTestDataBuilder().conId(1L).build());
+        List<DtoItem> dtoItemList = Collections.singletonList(new DtoItemTestDataBuilder().conId(1L).build());
         List<Long> ids = Collections.singletonList(1L);
 
         DaoItem daoItem = Mockito.mock(DaoItem.class);
@@ -78,7 +79,7 @@ class ServicioInventariarItemTest {
         Mockito.when(repositorioItem.existePorId(Mockito.anyLong())).thenReturn(true);
         Mockito.when(repositorioVenta.existePorId(idVenta)).thenReturn(false);
         Mockito.when(daoVenta.obtenerPorId(Mockito.anyLong())).thenReturn(Mockito.any(DtoVenta.class));
-        Mockito.when(daoItem.listarPorIds(ids)).thenReturn(Mockito.anyList());
+        Mockito.when(daoItem.listarPorIds(ids)).thenReturn(dtoItemList);
         ServicioInventariarItems servicioInventariarItems = new ServicioInventariarItems(daoItem, repositorioItem, repositorioVenta, daoVenta);
         // act
         servicioInventariarItems.ejecutar(idCantidadItemList, idVenta);
