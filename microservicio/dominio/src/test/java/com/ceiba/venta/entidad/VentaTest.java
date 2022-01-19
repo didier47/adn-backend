@@ -3,6 +3,8 @@ package com.ceiba.venta.entidad;
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
+import com.ceiba.item.modelo.entidad.Item;
+import com.ceiba.item.servicio.testdatabuilder.ItemTestDataBuilder;
 import com.ceiba.repartidor.modelo.entidad.Repartidor;
 import com.ceiba.repartidor.servicio.testdatabuilder.RepartidorTestDataBuilder;
 import com.ceiba.venta.modelo.entidad.Venta;
@@ -12,6 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -38,6 +42,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(idRepartidor, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -56,6 +61,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -74,6 +80,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -92,6 +99,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -110,6 +118,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -128,6 +137,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -146,6 +156,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -164,6 +175,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
@@ -182,6 +194,7 @@ class VentaTest {
         //assert
         assertEquals(1, venta.getId());
         assertEquals(2, venta.getRepartidor().getId());
+        assertEquals(1L, venta.getItems().get(0).getId());
         assertEquals("referenciaventa", venta.getReferencia());
         assertEquals(distancia, venta.getDistancia());
         assertEquals(fechaEntrega, venta.getFechaEntrega());
